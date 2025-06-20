@@ -395,13 +395,15 @@
 
         function updateTimer() {
             const now = new Date();
-            const diff = now - startDate;
+            // 1 dia = 24 h × 60 min × 60 s × 1000 ms
+            const diff = now - startDate - 24 * 60 * 60 * 1000; // remove um dia
 
             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
             const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-            document.getElementById('timer').textContent = `${years} anos, ${days} dias, ${hours} horas`;
+            document.getElementById('timer').textContent =
+                `${years} anos, ${days} dias, ${hours} horas`;
         }
 
         updateTimer();
